@@ -700,7 +700,7 @@ export const carRentals: CarRental[] = [
     type: "luxury",
     capacity: "5 Passengers",
     ac: true,
-    image: "https://images.unsplash.com/photo-1606611013016-969c19ba27ea?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80",
     description: "Premium SUV combining luxury with rugged capability. Commanding road presence with plush interiors, perfect for Rajasthan and hill station routes.",
     features: ["Premium cabin", "5 passengers + driver", "4WD available", "High ground clearance", "Cruise control", "LED lighting"],
     routes: [
