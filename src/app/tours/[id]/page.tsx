@@ -50,7 +50,7 @@ export default async function TourDetailPage({
             <ArrowLeft className="w-4 h-4" />
             Back to Tours
           </Link>
-          <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white leading-tight">
+          <h1 className="font-display text-2xl sm:text-3xl lg:text-5xl font-bold text-white leading-tight">
             {tour.name}
           </h1>
           <div className="flex flex-wrap items-center gap-4 mt-3 text-white/80 text-sm">
@@ -77,7 +77,7 @@ export default async function TourDetailPage({
           <div className="lg:col-span-2 space-y-10">
             {/* Description */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="font-display text-2xl font-bold text-gray-900 mb-4">
                 Overview
               </h2>
               <p className="text-gray-600 leading-relaxed text-[15px]">
@@ -87,7 +87,7 @@ export default async function TourDetailPage({
 
             {/* Highlights */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="font-display text-2xl font-bold text-gray-900 mb-4">
                 Highlights
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -105,18 +105,18 @@ export default async function TourDetailPage({
 
             {/* Itinerary */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              <h2 className="font-display text-2xl font-bold text-gray-900 mb-6">
                 Itinerary
               </h2>
               <div className="space-y-0">
                 {tour.itinerary.map((item, i) => (
                   <div key={i} className="flex gap-4">
                     <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-gray-900 text-white text-xs font-bold flex items-center justify-center shrink-0">
                         {i + 1}
                       </div>
                       {i < tour.itinerary.length - 1 && (
-                        <div className="w-0.5 flex-1 bg-teal-200 my-1" />
+                        <div className="w-0.5 flex-1 bg-gray-200 my-1" />
                       )}
                     </div>
                     <div className="pb-8">
@@ -137,7 +137,7 @@ export default async function TourDetailPage({
 
             {/* What's Included */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="font-display text-2xl font-bold text-gray-900 mb-4">
                 What&apos;s Included
               </h2>
               <div className="bg-green-50/50 rounded-2xl p-6">
@@ -175,7 +175,7 @@ export default async function TourDetailPage({
                 href={getWhatsAppLink(tour.name)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-4 rounded-xl transition-all hover:shadow-lg hover:shadow-green-500/25"
+                className="flex items-center justify-center gap-2 w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-4 rounded-full transition-all hover:shadow-lg"
               >
                 <MessageCircle className="w-5 h-5" />
                 Book via WhatsApp
@@ -183,7 +183,7 @@ export default async function TourDetailPage({
 
               <a
                 href={`tel:${CONTACT.phone}`}
-                className="flex items-center justify-center gap-2 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 rounded-xl transition-colors"
+                className="flex items-center justify-center gap-2 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 rounded-full transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 Call Us

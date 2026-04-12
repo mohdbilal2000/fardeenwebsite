@@ -91,7 +91,7 @@ export default async function BlogPostPage({
           <span className="inline-block bg-teal-500/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">
             {post.category}
           </span>
-          <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white leading-tight">
+          <h1 className="font-display text-2xl sm:text-3xl lg:text-5xl font-bold text-white leading-tight">
             {post.title}
           </h1>
           <div className="flex flex-wrap items-center gap-4 mt-4 text-white/70 text-sm">
@@ -122,11 +122,11 @@ export default async function BlogPostPage({
         </div>
 
         {/* CTA Box */}
-        <div className="mt-12 bg-gradient-to-br from-teal-50 to-teal-100/50 rounded-2xl p-8 text-center">
-          <h3 className="text-xl font-bold text-gray-900">
+        <div className="mt-12 bg-gray-950 rounded-3xl p-8 sm:p-10 text-center">
+          <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
             Ready to Experience This?
           </h3>
-          <p className="mt-2 text-gray-600 max-w-md mx-auto">
+          <p className="mt-2 text-gray-400 max-w-md mx-auto text-sm">
             Let us plan the perfect tour for you. Chat with Fardeen directly on
             WhatsApp for a personalized itinerary.
           </p>
@@ -134,7 +134,7 @@ export default async function BlogPostPage({
             href={getWhatsAppGenericLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-xl mt-5 transition-all hover:shadow-lg hover:shadow-green-500/25"
+            className="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-900 font-semibold px-6 py-3 rounded-full mt-6 transition-all hover:shadow-lg"
           >
             <MessageCircle className="w-5 h-5" />
             Chat on WhatsApp
