@@ -29,6 +29,13 @@ export function getWhatsAppLink(tourName: string): string {
   return `${WHATSAPP_BASE_URL}?text=${message}`;
 }
 
+export function getWhatsAppCarLink(carName: string, route: string): string {
+  const message = encodeURIComponent(
+    `Hi Fardeen, I'm interested in renting a "${carName}" for the "${route}" route. Could you share availability and pricing?`
+  );
+  return `${WHATSAPP_BASE_URL}?text=${message}`;
+}
+
 export function getWhatsAppGenericLink(): string {
   const message = encodeURIComponent(
     `Hi Fardeen, I'd like to know more about your tour packages.`
@@ -39,6 +46,7 @@ export function getWhatsAppGenericLink(): string {
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Tours", href: "/tours" },
+  { label: "Car Rentals", href: "/car-rentals" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },

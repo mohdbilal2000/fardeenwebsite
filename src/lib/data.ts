@@ -573,6 +573,180 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
+// ===== CAR RENTALS =====
+
+export interface CarRental {
+  id: string;
+  name: string;
+  type: CarType;
+  capacity: string;
+  ac: boolean;
+  image: string;
+  description: string;
+  features: string[];
+  routes: CarRoute[];
+}
+
+export interface CarRoute {
+  from: string;
+  to: string;
+  distance: string;
+  priceOneWay: number;
+  priceRoundTrip: number;
+  duration: string;
+}
+
+export type CarType = "sedan" | "suv" | "luxury" | "tempo";
+
+export const CAR_TYPES: { key: CarType; label: string }[] = [
+  { key: "sedan", label: "Sedan" },
+  { key: "suv", label: "SUV" },
+  { key: "luxury", label: "Luxury" },
+  { key: "tempo", label: "Tempo Traveller" },
+];
+
+export const carRentals: CarRental[] = [
+  {
+    id: "swift-dzire",
+    name: "Maruti Swift Dzire",
+    type: "sedan",
+    capacity: "4 Passengers",
+    ac: true,
+    image: "https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&q=80",
+    description: "Compact and fuel-efficient sedan, perfect for small groups and day trips. Comfortable AC cabin with ample boot space for luggage.",
+    features: ["AC cabin", "4 passengers + driver", "Ample boot space", "Fuel efficient", "GPS equipped", "First aid kit"],
+    routes: [
+      { from: "Delhi", to: "Agra", distance: "233 km", priceOneWay: 35, priceRoundTrip: 55, duration: "3.5 hours" },
+      { from: "Delhi", to: "Jaipur", distance: "280 km", priceOneWay: 40, priceRoundTrip: 65, duration: "4.5 hours" },
+      { from: "Agra", to: "Jaipur", distance: "240 km", priceOneWay: 38, priceRoundTrip: 60, duration: "4 hours" },
+      { from: "Delhi", to: "Haridwar", distance: "230 km", priceOneWay: 38, priceRoundTrip: 60, duration: "5 hours" },
+      { from: "Delhi", to: "Chandigarh", distance: "250 km", priceOneWay: 40, priceRoundTrip: 65, duration: "4.5 hours" },
+      { from: "Jaipur", to: "Udaipur", distance: "395 km", priceOneWay: 55, priceRoundTrip: 90, duration: "6 hours" },
+    ],
+  },
+  {
+    id: "toyota-etios",
+    name: "Toyota Etios",
+    type: "sedan",
+    capacity: "4 Passengers",
+    ac: true,
+    image: "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=800&q=80",
+    description: "Reliable and spacious sedan from Toyota with excellent ride quality. A favorite for long-distance intercity travel.",
+    features: ["Spacious AC cabin", "4 passengers + driver", "Large boot", "Smooth ride", "Power steering", "Central locking"],
+    routes: [
+      { from: "Delhi", to: "Agra", distance: "233 km", priceOneWay: 38, priceRoundTrip: 60, duration: "3.5 hours" },
+      { from: "Delhi", to: "Jaipur", distance: "280 km", priceOneWay: 45, priceRoundTrip: 70, duration: "4.5 hours" },
+      { from: "Agra", to: "Jaipur", distance: "240 km", priceOneWay: 42, priceRoundTrip: 65, duration: "4 hours" },
+      { from: "Delhi", to: "Rishikesh", distance: "250 km", priceOneWay: 45, priceRoundTrip: 72, duration: "5.5 hours" },
+      { from: "Delhi", to: "Mathura", distance: "180 km", priceOneWay: 30, priceRoundTrip: 48, duration: "3 hours" },
+      { from: "Agra", to: "Lucknow", distance: "335 km", priceOneWay: 50, priceRoundTrip: 80, duration: "5.5 hours" },
+    ],
+  },
+  {
+    id: "toyota-innova",
+    name: "Toyota Innova Crysta",
+    type: "suv",
+    capacity: "6 Passengers",
+    ac: true,
+    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80",
+    description: "India's most popular premium MPV. Spacious 3-row seating with powerful engine, ideal for families and group tours across long distances.",
+    features: ["3-row AC seating", "6 passengers + driver", "Premium interiors", "Powerful diesel engine", "Roof carrier available", "Charging ports"],
+    routes: [
+      { from: "Delhi", to: "Agra", distance: "233 km", priceOneWay: 55, priceRoundTrip: 85, duration: "3.5 hours" },
+      { from: "Delhi", to: "Jaipur", distance: "280 km", priceOneWay: 65, priceRoundTrip: 100, duration: "4.5 hours" },
+      { from: "Agra", to: "Jaipur", distance: "240 km", priceOneWay: 60, priceRoundTrip: 92, duration: "4 hours" },
+      { from: "Delhi", to: "Manali", distance: "540 km", priceOneWay: 120, priceRoundTrip: 200, duration: "12 hours" },
+      { from: "Delhi", to: "Shimla", distance: "350 km", priceOneWay: 85, priceRoundTrip: 140, duration: "7 hours" },
+      { from: "Jaipur", to: "Jodhpur", distance: "335 km", priceOneWay: 75, priceRoundTrip: 120, duration: "5 hours" },
+      { from: "Delhi", to: "Dehradun", distance: "255 km", priceOneWay: 65, priceRoundTrip: 105, duration: "5.5 hours" },
+    ],
+  },
+  {
+    id: "mahindra-xuv",
+    name: "Mahindra XUV700",
+    type: "suv",
+    capacity: "6 Passengers",
+    ac: true,
+    image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&q=80",
+    description: "Modern luxury SUV with advanced safety features and a premium cabin. Perfect for travelers who want comfort and style.",
+    features: ["Panoramic sunroof", "6 passengers + driver", "ADAS safety", "Premium sound system", "Wireless charging", "Climate control"],
+    routes: [
+      { from: "Delhi", to: "Agra", distance: "233 km", priceOneWay: 60, priceRoundTrip: 95, duration: "3.5 hours" },
+      { from: "Delhi", to: "Jaipur", distance: "280 km", priceOneWay: 70, priceRoundTrip: 110, duration: "4.5 hours" },
+      { from: "Agra", to: "Jaipur", distance: "240 km", priceOneWay: 65, priceRoundTrip: 100, duration: "4 hours" },
+      { from: "Delhi", to: "Nainital", distance: "300 km", priceOneWay: 80, priceRoundTrip: 130, duration: "6.5 hours" },
+      { from: "Delhi", to: "Jim Corbett", distance: "260 km", priceOneWay: 72, priceRoundTrip: 115, duration: "5.5 hours" },
+    ],
+  },
+  {
+    id: "mercedes-eclass",
+    name: "Mercedes E-Class",
+    type: "luxury",
+    capacity: "3 Passengers",
+    ac: true,
+    image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80",
+    description: "Ultimate luxury sedan for VIP transfers and premium experiences. Plush leather interiors, whisper-quiet cabin, and chauffeur service.",
+    features: ["Leather interiors", "3 passengers + chauffeur", "Climate control", "Rear entertainment", "Complimentary water", "WiFi available"],
+    routes: [
+      { from: "Delhi", to: "Agra", distance: "233 km", priceOneWay: 150, priceRoundTrip: 250, duration: "3.5 hours" },
+      { from: "Delhi", to: "Jaipur", distance: "280 km", priceOneWay: 180, priceRoundTrip: 300, duration: "4.5 hours" },
+      { from: "Delhi Airport", to: "City Hotel", distance: "30 km", priceOneWay: 50, priceRoundTrip: 80, duration: "45 min" },
+      { from: "Agra", to: "Jaipur", distance: "240 km", priceOneWay: 160, priceRoundTrip: 270, duration: "4 hours" },
+    ],
+  },
+  {
+    id: "toyota-fortuner",
+    name: "Toyota Fortuner",
+    type: "luxury",
+    capacity: "5 Passengers",
+    ac: true,
+    image: "https://images.unsplash.com/photo-1606611013016-969c19ba27ea?w=800&q=80",
+    description: "Premium SUV combining luxury with rugged capability. Commanding road presence with plush interiors, perfect for Rajasthan and hill station routes.",
+    features: ["Premium cabin", "5 passengers + driver", "4WD available", "High ground clearance", "Cruise control", "LED lighting"],
+    routes: [
+      { from: "Delhi", to: "Agra", distance: "233 km", priceOneWay: 90, priceRoundTrip: 145, duration: "3.5 hours" },
+      { from: "Delhi", to: "Jaipur", distance: "280 km", priceOneWay: 105, priceRoundTrip: 170, duration: "4.5 hours" },
+      { from: "Delhi", to: "Manali", distance: "540 km", priceOneWay: 180, priceRoundTrip: 300, duration: "12 hours" },
+      { from: "Jaipur", to: "Udaipur", distance: "395 km", priceOneWay: 130, priceRoundTrip: 210, duration: "6 hours" },
+      { from: "Delhi", to: "Shimla", distance: "350 km", priceOneWay: 120, priceRoundTrip: 195, duration: "7 hours" },
+    ],
+  },
+  {
+    id: "tempo-12",
+    name: "Tempo Traveller (12-Seater)",
+    type: "tempo",
+    capacity: "12 Passengers",
+    ac: true,
+    image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800&q=80",
+    description: "Spacious mini-coach ideal for group tours, family trips, and corporate outings. Push-back seats with individual AC vents and ample luggage space.",
+    features: ["Push-back seats", "12 passengers + driver", "Individual AC vents", "Large luggage area", "Music system", "Curtains & LED lights"],
+    routes: [
+      { from: "Delhi", to: "Agra", distance: "233 km", priceOneWay: 90, priceRoundTrip: 145, duration: "4 hours" },
+      { from: "Delhi", to: "Jaipur", distance: "280 km", priceOneWay: 110, priceRoundTrip: 175, duration: "5 hours" },
+      { from: "Delhi", to: "Haridwar", distance: "230 km", priceOneWay: 95, priceRoundTrip: 155, duration: "5.5 hours" },
+      { from: "Delhi", to: "Manali", distance: "540 km", priceOneWay: 200, priceRoundTrip: 340, duration: "13 hours" },
+      { from: "Jaipur", to: "Jodhpur", distance: "335 km", priceOneWay: 130, priceRoundTrip: 210, duration: "5.5 hours" },
+    ],
+  },
+  {
+    id: "tempo-17",
+    name: "Tempo Traveller (17-Seater)",
+    type: "tempo",
+    capacity: "17 Passengers",
+    ac: true,
+    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
+    description: "Larger mini-coach for big groups. Comfortable seating with excellent headroom and luggage capacity. Perfect for wedding groups and large family tours.",
+    features: ["17 push-back seats", "17 passengers + driver", "Dual AC", "Huge luggage space", "Entertainment system", "First aid kit"],
+    routes: [
+      { from: "Delhi", to: "Agra", distance: "233 km", priceOneWay: 110, priceRoundTrip: 180, duration: "4 hours" },
+      { from: "Delhi", to: "Jaipur", distance: "280 km", priceOneWay: 135, priceRoundTrip: 220, duration: "5 hours" },
+      { from: "Delhi", to: "Rishikesh", distance: "250 km", priceOneWay: 120, priceRoundTrip: 195, duration: "6 hours" },
+      { from: "Delhi", to: "Shimla", distance: "350 km", priceOneWay: 160, priceRoundTrip: 265, duration: "8 hours" },
+      { from: "Agra", to: "Jaipur", distance: "240 km", priceOneWay: 120, priceRoundTrip: 195, duration: "4.5 hours" },
+    ],
+  },
+];
+
 export interface BlogPost {
   id: string;
   title: string;
