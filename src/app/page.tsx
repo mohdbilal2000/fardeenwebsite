@@ -19,23 +19,23 @@ export default function HomePage() {
       <HeroSection />
 
       {/* Featured Tours */}
-      <section className="py-14 sm:py-20 bg-gray-50/50">
+      <section className="py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-8 sm:mb-10">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+          <div className="flex items-end justify-between mb-10 sm:mb-14">
+            <div className="section-line">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                 Popular Tours
               </h2>
-              <p className="mt-2 text-gray-500 text-sm sm:text-base">
+              <p className="mt-2 text-gray-500 text-sm sm:text-base max-w-md">
                 Handpicked experiences loved by travelers worldwide
               </p>
             </div>
             <Link
               href="/tours"
-              className="hidden sm:flex items-center gap-1 text-sm font-medium text-teal-700 hover:text-teal-800 transition-colors"
+              className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-gray-900 hover:text-teal-700 transition-colors group"
             >
-              View all tours
-              <ArrowRight className="w-4 h-4" />
+              View all
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
@@ -44,27 +44,27 @@ export default function HomePage() {
             ))}
           </div>
           <div className="mt-8 text-center sm:hidden">
-            <Link
-              href="/tours"
-              className="inline-flex items-center gap-1 text-sm font-medium text-teal-700"
-            >
-              View all tours
-              <ArrowRight className="w-4 h-4" />
+            <Link href="/tours" className="inline-flex items-center gap-1 text-sm font-medium text-gray-900">
+              View all tours <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* Services */}
-      <section className="py-14 sm:py-20">
+      <section className="py-16 sm:py-24 bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Our Services</h2>
-            <p className="mt-2 text-gray-500 text-sm sm:text-base">
+          <div className="text-center mb-10 sm:mb-14">
+            <div className="section-line mx-auto flex flex-col items-center">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+                Our Services
+              </h2>
+            </div>
+            <p className="mt-2 text-gray-500 text-sm sm:text-base max-w-md mx-auto">
               Everything you need for the perfect India trip
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {services.map((service) => (
               <ServiceCard key={service.id} service={service} />
             ))}
@@ -75,23 +75,23 @@ export default function HomePage() {
       <Stats />
 
       {/* Testimonials */}
-      <section className="py-14 sm:py-20">
+      <section className="py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-8 sm:mb-10">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+          <div className="flex items-end justify-between mb-10 sm:mb-14">
+            <div className="section-line">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                 What Travelers Say
               </h2>
-              <p className="mt-2 text-gray-500 text-sm sm:text-base">
+              <p className="mt-2 text-gray-500 text-sm sm:text-base max-w-md">
                 Real reviews from real travelers
               </p>
             </div>
             <Link
               href="/testimonials"
-              className="hidden sm:flex items-center gap-1 text-sm font-medium text-teal-700 hover:text-teal-800 transition-colors"
+              className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-gray-900 hover:text-teal-700 transition-colors group"
             >
               All reviews
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
@@ -102,24 +102,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Blog Preview */}
-      <section className="py-14 sm:py-20 bg-gray-50/50">
+      {/* Blog */}
+      <section className="py-16 sm:py-24 bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-8 sm:mb-10">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+          <div className="flex items-end justify-between mb-10 sm:mb-14">
+            <div className="section-line">
+              <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                 Travel Journal
               </h2>
-              <p className="mt-2 text-gray-500 text-sm sm:text-base">
+              <p className="mt-2 text-gray-500 text-sm sm:text-base max-w-md">
                 Tips, guides, and stories from India
               </p>
             </div>
             <Link
               href="/blog"
-              className="hidden sm:flex items-center gap-1 text-sm font-medium text-teal-700 hover:text-teal-800 transition-colors"
+              className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-gray-900 hover:text-teal-700 transition-colors group"
             >
               All articles
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">

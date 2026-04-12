@@ -22,38 +22,34 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isTransparent
           ? "bg-transparent"
-          : "bg-white/95 backdrop-blur-lg border-b border-gray-100 shadow-sm"
+          : "bg-white/90 backdrop-blur-xl border-b border-gray-200/50 shadow-sm"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 sm:h-18">
           <Link href="/" className="shrink-0">
-            <span
-              className={`text-lg sm:text-xl font-bold transition-colors whitespace-nowrap ${
-                isTransparent ? "text-white" : "text-teal-700"
-              }`}
-            >
+            <span className={`text-lg font-bold tracking-tight transition-colors ${isTransparent ? "text-white" : "text-gray-900"}`}>
               {SITE_NAME}
             </span>
           </Link>
 
-          {/* Desktop Nav — only show at lg (1024px+) */}
-          <div className="hidden lg:flex items-center gap-0.5">
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center gap-1">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-2.5 py-2 rounded-lg text-[13px] font-medium transition-colors whitespace-nowrap ${
+                className={`px-3 py-1.5 rounded-full text-[13px] font-medium transition-all ${
                   pathname === link.href
                     ? isTransparent
                       ? "text-white bg-white/15"
-                      : "text-teal-700 bg-teal-50"
+                      : "text-gray-900 bg-gray-100"
                     : isTransparent
-                    ? "text-white/80 hover:text-white hover:bg-white/10"
-                    : "text-gray-600 hover:text-teal-700 hover:bg-gray-50"
+                    ? "text-white/70 hover:text-white hover:bg-white/10"
+                    : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
                 }`}
               >
                 {link.label}
@@ -61,47 +57,39 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-3">
             <a
               href={`tel:${CONTACT.phone}`}
-              className={`flex items-center gap-1.5 text-sm font-medium transition-colors px-2 py-2 rounded-lg ${
-                isTransparent
-                  ? "text-white/80 hover:text-white"
-                  : "text-gray-600 hover:text-teal-700"
-              }`}
+              className={`text-[13px] font-medium transition-colors ${isTransparent ? "text-white/70 hover:text-white" : "text-gray-500 hover:text-gray-900"}`}
             >
-              <Phone className="w-4 h-4" />
               <span className="hidden xl:inline">{CONTACT.phoneDisplay}</span>
+              <Phone className="w-4 h-4 xl:hidden" />
             </a>
             <a
               href={getWhatsAppGenericLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-3.5 py-2 rounded-lg transition-colors whitespace-nowrap"
+              className="flex items-center gap-1.5 bg-gray-900 hover:bg-gray-800 text-white text-[13px] font-medium px-4 py-2 rounded-full transition-all hover:shadow-lg"
             >
-              <MessageCircle className="w-4 h-4" />
-              <span className="hidden xl:inline">WhatsApp</span>
+              <MessageCircle className="w-3.5 h-3.5" />
+              WhatsApp
             </a>
           </div>
 
-          {/* Mobile/Tablet toggle — show below lg */}
+          {/* Mobile */}
           <div className="flex lg:hidden items-center gap-2">
             <a
               href={getWhatsAppGenericLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 bg-green-500 hover:bg-green-600 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-colors"
+              className="flex items-center gap-1.5 bg-gray-900 text-white text-xs font-medium px-3 py-2 rounded-full"
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">WhatsApp</span>
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-lg transition-colors ${
-                isTransparent
-                  ? "text-white hover:bg-white/10"
-                  : "text-gray-600 hover:bg-gray-100"
-              }`}
+              className={`p-2 rounded-full transition-colors ${isTransparent ? "text-white hover:bg-white/10" : "text-gray-600 hover:bg-gray-100"}`}
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -109,29 +97,26 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile/Tablet Menu */}
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden bg-white border-b border-gray-100 shadow-lg animate-fade-in">
-          <div className="px-4 py-4 space-y-1">
+        <div className="lg:hidden bg-white/95 backdrop-blur-xl border-b border-gray-200/50 animate-fade-in">
+          <div className="px-4 py-5 space-y-1">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                   pathname === link.href
-                    ? "text-teal-700 bg-teal-50"
-                    : "text-gray-600 hover:text-teal-700 hover:bg-gray-50"
+                    ? "text-gray-900 bg-gray-100"
+                    : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="pt-3 border-t border-gray-100 space-y-2">
-              <a
-                href={`tel:${CONTACT.phone}`}
-                className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-600 font-medium"
-              >
+            <div className="pt-3 border-t border-gray-100">
+              <a href={`tel:${CONTACT.phone}`} className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-500 font-medium">
                 <Phone className="w-4 h-4" />
                 {CONTACT.phoneDisplay}
               </a>
