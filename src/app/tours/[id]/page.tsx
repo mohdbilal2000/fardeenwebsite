@@ -151,6 +151,27 @@ export default async function TourDetailPage({
                 </ul>
               </div>
             </div>
+
+            {/* What's Excluded */}
+            {tour.excluded && tour.excluded.length > 0 && (
+              <div>
+                <h2 className="font-display text-2xl font-bold text-gray-900 mb-4">
+                  Not Included
+                </h2>
+                <div className="bg-red-50/30 rounded-2xl p-6 border border-red-100/50">
+                  <ul className="space-y-2.5">
+                    {tour.excluded.map((item) => (
+                      <li key={item} className="flex items-center gap-3">
+                        <span className="w-4 h-4 rounded-full border-2 border-red-300 shrink-0 flex items-center justify-center">
+                          <span className="w-1.5 h-0.5 bg-red-400 rounded" />
+                        </span>
+                        <span className="text-sm text-gray-600">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Sidebar - Booking Card */}
