@@ -23,6 +23,7 @@ export type TourCategory =
   | "kashmir"
   | "sri-lanka"
   | "mysore"
+  | "varanasi"
   | "food-heritage"
   | "photography"
   | "two-day";
@@ -35,6 +36,7 @@ export const TOUR_CATEGORIES: { key: TourCategory; label: string }[] = [
   { key: "kashmir", label: "Kashmir" },
   { key: "sri-lanka", label: "Sri Lanka" },
   { key: "mysore", label: "Mysore & South" },
+  { key: "varanasi", label: "Varanasi" },
   { key: "food-heritage", label: "Food & Heritage Walks" },
   { key: "photography", label: "Photography Tours" },
   { key: "two-day", label: "Two Day Tours" },
@@ -84,7 +86,7 @@ export const tours: Tour[] = [
       { day: "2:00 PM", title: "Return Journey to Delhi", description: "Begin your comfortable return drive to Delhi via the Yamuna Expressway, relaxing in your private AC car after a fulfilling day of sightseeing and cultural immersion in the historic city of Agra." },
       { day: "6:00 PM", title: "Delhi Hotel Drop-off", description: "Arrive back at your Delhi hotel by early evening, concluding your memorable Taj Mahal Sunrise Tour with wonderful photographs and unforgettable memories of one of the world's most iconic monuments." },
     ],
-    image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=800&q=80",
+    image: "/images/sunrisetajmahal.jpeg",
   },
   {
     id: "taj-by-car",
@@ -124,7 +126,7 @@ export const tours: Tour[] = [
       { day: "4:00 PM", title: "Return Journey to Delhi", description: "Begin your comfortable return drive to Delhi in your private AC vehicle, relaxing and reminiscing about the incredible sights and experiences of the day as you travel back along the expressway." },
       { day: "8:00 PM", title: "Delhi Hotel Drop-off", description: "Arrive back at your Delhi hotel by evening, concluding your memorable same-day Taj Mahal tour with wonderful memories and photographs of one of humanity's greatest architectural achievements." },
     ],
-    image: "https://images.unsplash.com/photo-1515091943-9d5c0ad475af?w=800&q=80",
+    image: "/images/tajmahal.jpeg",
   },
   {
     id: "taj-by-train",
@@ -203,7 +205,7 @@ export const tours: Tour[] = [
       { day: "5:00 PM", title: "Return to Delhi", description: "Begin the return drive to Delhi, relaxing in your private AC car after a day packed with royal heritage, stunning architecture, and vibrant culture." },
       { day: "9:00 PM", title: "Delhi Arrival", description: "Arrive back at your Delhi hotel by evening, concluding your whirlwind exploration of the magnificent Pink City of Jaipur." },
     ],
-    image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+    image: "/images/jaipur.jpeg",
   },
   {
     id: "delhi-overnight",
@@ -587,7 +589,7 @@ export const tours: Tour[] = [
       { day: "11:00 AM", title: "Break, Lunch & Photo Review", description: "Take a well-deserved break with a light lunch at a local restaurant. This is an excellent time to review your morning captures with your photography guide, who can offer feedback on composition, exposure, and post-processing suggestions. Discuss strategies for the afternoon golden hour session and plan which specific shots and perspectives you want to prioritize for the sunset session at Mehtab Bagh." },
       { day: "4:00 PM", title: "Mehtab Bagh Sunset Session", description: "Head to Mehtab Bagh (Moonlight Garden) on the northern bank of the Yamuna River for the afternoon golden hour and sunset session. This location offers arguably the most spectacular photographic perspective of the Taj Mahal — the full monument framed against the western sky as the setting sun paints it in warm hues of gold, amber, and deep orange. Capture dramatic silhouettes, long-exposure reflections in the Yamuna River, and the magical moment when the marble seems to absorb and radiate the sunset colors. Your guide helps you find the perfect positions along the garden terraces for both wide-angle panoramas and telephoto compression shots." },
     ],
-    image: "https://images.unsplash.com/photo-1506462945848-ac8ea6f609cc?w=800&q=80",
+    image: "/images/sunrise.jpeg",
   },
   {
     id: "photo-delhi",
@@ -809,7 +811,7 @@ export const tours: Tour[] = [
       { day: "Day 7", title: "Beach Day — Unawatuna/Bentota", description: "Relax on southern beaches. Optional whale watching (seasonal) or water sports. Overnight beach resort." },
       { day: "Day 8", title: "Drive to Colombo — Departure", description: "Drive to Colombo, city tour, airport drop-off." },
     ],
-    image: "https://images.unsplash.com/photo-1588598198321-9735fd7c53dd?w=800&q=80",
+    image: "/images/srilanka.jpeg",
   },
 
   // ===== MYSORE & SOUTH INDIA TOURS =====
@@ -987,6 +989,63 @@ export const tours: Tour[] = [
       { day: "4:45 PM", title: "Mehtab Bagh at Sunset", description: "End at Mehtab Bagh (Moonlight Garden), directly across the Yamuna River from the Taj Mahal. Watch the sunset as the Taj Mahal changes color from white to pink to gold — widely considered the best view of the monument. Tour concludes at sunset." },
     ],
     image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80",
+  },
+  {
+    id: "varanasi-spiritual-3day",
+    name: "Varanasi Spiritual Experience",
+    category: "varanasi",
+    duration: "3 Days / 2 Nights",
+    price: 220,
+    originalPrice: 315,
+    currency: "USD",
+    description:
+      "Experience the spiritual heart of India in the world's oldest continuously inhabited city. Witness the sacred Ganga Aarti, sunrise boat rides on the Ganges, and explore ancient temples and ghats.",
+    longDescription:
+      "Varanasi, also known as Kashi or Banaras, is the spiritual capital of India and one of the oldest living cities in the world. This 3-day journey takes you through the sacred ghats along the holy Ganges River, ancient temples, and bustling lanes steeped in centuries of history and religious significance. Witness the mesmerizing Ganga Aarti ceremony at Dashashwamedh Ghat, take a peaceful sunrise boat ride, explore Sarnath where Buddha gave his first sermon, and immerse yourself in the timeless rituals and traditions that have continued unbroken for millennia.",
+    highlights: [
+      "Sunrise boat ride on the Ganges",
+      "Evening Ganga Aarti ceremony",
+      "Sarnath Buddhist site visit",
+      "Explore ancient ghats and lanes",
+    ],
+    included: [
+      "2 nights hotel accommodation with daily breakfast",
+      "Private AC car with professional driver",
+      "Licensed English-speaking guide",
+      "All monument and temple entry fees",
+      "Sunrise and evening boat rides on the Ganges",
+      "Ganga Aarti ceremony viewing arrangements",
+      "Airport/railway station pickup & drop-off",
+      "Bottled mineral water",
+      "All applicable taxes",
+    ],
+    excluded: [
+      "Lunch and dinner meals",
+      "Personal expenses and donations at temples",
+      "Tips and gratuities for guides and drivers",
+      "Camera fees where applicable",
+    ],
+    itinerary: [
+      {
+        day: "Day 1",
+        title: "Arrival in Varanasi & Evening Ganga Aarti",
+        description:
+          "Arrive in Varanasi and transfer to your hotel. After a brief rest, head out in the late afternoon for an orientation walk through the old city's narrow lanes leading to Dashashwamedh Ghat. Witness the spectacular evening Ganga Aarti ceremony — an elaborate ritual performed by young priests with large brass lamps, accompanied by Sanskrit chants and devotional music. Hundreds of diyas (oil lamps) float down the river as the smoke of incense fills the air, creating an unforgettable spiritual spectacle. Return to hotel for dinner and overnight stay.",
+      },
+      {
+        day: "Day 2",
+        title: "Sunrise Boat Ride, Temples & Sarnath",
+        description:
+          "Start before dawn with a pickup for a sunrise boat ride along the Ganges. Watch as the city awakens — pilgrims performing ritual bathing, sadhus meditating, priests chanting, and funeral pyres burning at Manikarnika Ghat. The golden morning light on the ghats is breathtaking and photographically stunning. Return to hotel for breakfast. Mid-morning, visit Kashi Vishwanath Temple (one of the twelve Jyotirlingas), Durga Temple, and Tulsi Manas Mandir. After lunch, drive to Sarnath (10 km away) where Lord Buddha delivered his first sermon after attaining enlightenment. Visit the Dhamek Stupa, Sarnath Museum (home to India's national emblem), and the ruins of ancient monasteries. Return to Varanasi for overnight.",
+      },
+      {
+        day: "Day 3",
+        title: "Ghat Walk & Departure",
+        description:
+          "After breakfast, take a guided walking tour along the ghats from Assi Ghat to Manikarnika Ghat — each ghat has its own history and purpose. Visit Bharat Mata Mandir (Mother India Temple), Banaras Hindu University campus, and the New Vishwanath Temple. Afternoon at leisure to explore the famous markets for Banarasi silk sarees, brass items, and sweets. Transfer to Varanasi airport or railway station for onward journey. Tour concludes with memories of India's most spiritual city.",
+      },
+    ],
+    image: "/images/varanasi.jpeg",
   },
 ];
 
