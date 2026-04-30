@@ -1055,6 +1055,7 @@ export interface Service {
   description: string;
   icon: string;
   image: string;
+  href: string;
 }
 
 export const services: Service[] = [
@@ -1064,6 +1065,7 @@ export const services: Service[] = [
     description: "Activity-based tours for groups and individuals across India. From day trips to multi-week journeys.",
     icon: "Map",
     image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80",
+    href: "/tours",
   },
   {
     id: "car-rental",
@@ -1071,6 +1073,7 @@ export const services: Service[] = [
     description: "A fleet of well-maintained AC cars and luxury coaches for comfortable travel across any distance.",
     icon: "Car",
     image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80",
+    href: "/car-rentals",
   },
   {
     id: "hotel-booking",
@@ -1078,6 +1081,7 @@ export const services: Service[] = [
     description: "Accommodations ranging from budget-friendly to luxury 5-star hotels across the Indian subcontinent.",
     icon: "Hotel",
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80",
+    href: "/contact",
   },
   {
     id: "guide-booking",
@@ -1085,6 +1089,7 @@ export const services: Service[] = [
     description: "Professional, multilingual tour guides certified by the Ministry of Tourism for heritage and cultural interpretation.",
     icon: "Users",
     image: "https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=600&q=80",
+    href: "/contact",
   },
   {
     id: "flight-tickets",
@@ -1092,6 +1097,7 @@ export const services: Service[] = [
     description: "Domestic and international flight booking assistance at competitive rates.",
     icon: "Plane",
     image: "https://images.unsplash.com/photo-1529074963764-98f45c47344b?w=600&q=80",
+    href: "/contact",
   },
   {
     id: "custom-itinerary",
@@ -1099,6 +1105,7 @@ export const services: Service[] = [
     description: "Personalized tour planning tailored to your interests, budget, and schedule. Your dream trip, your way.",
     icon: "Sparkles",
     image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&q=80",
+    href: "/contact",
   },
 ];
 
