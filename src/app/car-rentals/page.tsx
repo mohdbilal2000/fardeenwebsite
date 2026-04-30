@@ -26,7 +26,8 @@ export default function CarRentalsPage() {
           </div>
           <p className="mt-3 text-base sm:text-lg text-gray-400 max-w-xl">
             Comfortable, well-maintained vehicles for intercity travel across
-            India. Professional drivers, competitive rates, door-to-door service.
+            India. Professional drivers, door-to-door service. Contact us on
+            WhatsApp for a personalized quote.
           </p>
         </div>
       </section>
@@ -62,78 +63,74 @@ export default function CarRentalsPage() {
 
           {/* Car Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
-            {filtered.map((car) => {
-              const lowestPrice = Math.min(...car.routes.map((r) => r.priceOneWay));
-              return (
-                <div key={car.id} className="group bg-white rounded-2xl overflow-hidden card-hover border border-gray-100/80">
-                  <Link href={`/car-rentals/${car.id}`} className="block relative h-52 sm:h-56 overflow-hidden">
-                    <img src={car.image} alt={car.name} className="img-cover transition-transform duration-700 ease-out group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-                    <div className="absolute top-3 left-3">
-                      <span className="text-[11px] font-bold text-white bg-white/15 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10 uppercase tracking-wide">
-                        {car.type}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-3 left-3 flex items-center gap-3 text-white text-sm">
+            {filtered.map((car) => (
+              <div key={car.id} className="group bg-white rounded-2xl overflow-hidden card-hover border border-gray-100/80">
+                <Link href={`/car-rentals/${car.id}`} className="block relative h-52 sm:h-56 overflow-hidden">
+                  <img src={car.image} alt={car.name} className="img-cover transition-transform duration-700 ease-out group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                  <div className="absolute top-3 left-3">
+                    <span className="text-[11px] font-bold text-white bg-white/15 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10 uppercase tracking-wide">
+                      {car.type}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 left-3 flex items-center gap-3 text-white text-sm">
+                    <span className="flex items-center gap-1">
+                      <Users className="w-3.5 h-3.5" />
+                      {car.capacity}
+                    </span>
+                    {car.ac && (
                       <span className="flex items-center gap-1">
-                        <Users className="w-3.5 h-3.5" />
-                        {car.capacity}
+                        <Snowflake className="w-3.5 h-3.5" />
+                        AC
                       </span>
-                      {car.ac && (
-                        <span className="flex items-center gap-1">
-                          <Snowflake className="w-3.5 h-3.5" />
-                          AC
-                        </span>
-                      )}
-                    </div>
-                    <div className="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
-                      <ArrowUpRight className="w-4 h-4 text-white" />
-                    </div>
+                    )}
+                  </div>
+                  <div className="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+                    <ArrowUpRight className="w-4 h-4 text-white" />
+                  </div>
+                </Link>
+
+                <div className="p-5">
+                  <Link href={`/car-rentals/${car.id}`}>
+                    <h3 className="font-semibold text-gray-900 text-[17px] leading-snug group-hover:text-teal-700 transition-colors">
+                      {car.name}
+                    </h3>
                   </Link>
+                  <p className="text-[13px] text-gray-500 mt-2 line-clamp-2 leading-relaxed">
+                    {car.description}
+                  </p>
 
-                  <div className="p-5">
-                    <Link href={`/car-rentals/${car.id}`}>
-                      <h3 className="font-semibold text-gray-900 text-[17px] leading-snug group-hover:text-teal-700 transition-colors">
-                        {car.name}
-                      </h3>
+                  <div className="flex flex-wrap gap-1.5 mt-3">
+                    {car.routes.slice(0, 3).map((r) => (
+                      <span key={`${r.from}-${r.to}`} className="text-[11px] bg-gray-50 text-gray-500 px-2 py-0.5 rounded-full border border-gray-100">
+                        {r.from} → {r.to}
+                      </span>
+                    ))}
+                    {car.routes.length > 3 && (
+                      <span className="text-[11px] text-gray-400">+{car.routes.length - 3} more</span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-between gap-2 mt-4 pt-4 border-t border-gray-50">
+                    <Link
+                      href={`/car-rentals/${car.id}`}
+                      className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                    >
+                      View details →
                     </Link>
-                    <p className="text-[13px] text-gray-500 mt-2 line-clamp-2 leading-relaxed">
-                      {car.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1.5 mt-3">
-                      {car.routes.slice(0, 2).map((r) => (
-                        <span key={`${r.from}-${r.to}`} className="text-[11px] bg-gray-50 text-gray-500 px-2 py-0.5 rounded-full border border-gray-100">
-                          {r.from} → {r.to}
-                        </span>
-                      ))}
-                      {car.routes.length > 2 && (
-                        <span className="text-[11px] text-gray-400">+{car.routes.length - 2} more</span>
-                      )}
-                    </div>
-
-                    <div className="flex items-end justify-between mt-4 pt-4 border-t border-gray-50">
-                      <div>
-                        <span className="text-[11px] text-gray-400 uppercase tracking-wide">From</span>
-                        <div className="text-2xl font-bold text-gray-900 tracking-tight">
-                          ${lowestPrice}
-                          <span className="text-[11px] font-normal text-gray-400 ml-0.5">/one-way</span>
-                        </div>
-                      </div>
-                      <a
-                        href={getWhatsAppCarLink(car.name, `${car.routes[0].from} to ${car.routes[0].to}`)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-4 py-2.5 rounded-full transition-all hover:shadow-lg"
-                      >
-                        <MessageCircle className="w-3.5 h-3.5" />
-                        Book
-                      </a>
-                    </div>
+                    <a
+                      href={getWhatsAppCarLink(car.name, `${car.routes[0].from} to ${car.routes[0].to}`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-4 py-2.5 rounded-full transition-all hover:shadow-lg"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" />
+                      Get Quote
+                    </a>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -149,7 +146,7 @@ export default function CarRentalsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
             {[
               { title: "Verified Drivers", desc: "All drivers are background-checked, licensed, and experienced with tourist routes." },
-              { title: "No Hidden Charges", desc: "Toll taxes, parking, and driver allowance — everything is transparent upfront." },
+              { title: "Best Quote on WhatsApp", desc: "Share your route and dates — we'll send you a personalized quote within minutes." },
               { title: "24/7 Support", desc: "Real-time assistance from booking to drop-off. We're always a message away." },
             ].map((item) => (
               <div key={item.title} className="bg-white rounded-2xl p-6 border border-gray-100/50">

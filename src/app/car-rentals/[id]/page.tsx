@@ -85,59 +85,44 @@ export default async function CarRentalDetailPage({
               </div>
             </div>
 
-            {/* Route Pricing Table */}
+            {/* Routes Available */}
             <div>
-              <h2 className="font-display text-2xl font-bold text-gray-900 mb-6">Routes & Pricing</h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-gray-950 text-white">
-                      <th className="text-left px-4 py-3 rounded-tl-xl font-semibold">Route</th>
-                      <th className="text-left px-4 py-3 font-semibold hidden sm:table-cell">Distance</th>
-                      <th className="text-left px-4 py-3 font-semibold hidden sm:table-cell">Duration</th>
-                      <th className="text-right px-4 py-3 font-semibold">One Way</th>
-                      <th className="text-right px-4 py-3 font-semibold">Round Trip</th>
-                      <th className="text-right px-4 py-3 rounded-tr-xl font-semibold"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {car.routes.map((route, i) => (
-                      <tr key={i} className={`border-b border-gray-100 ${i % 2 === 0 ? "bg-white" : "bg-gray-50/50"}`}>
-                        <td className="px-4 py-3.5">
-                          <div className="flex items-center gap-1.5">
-                            <MapPin className="w-3.5 h-3.5 text-gray-400 shrink-0" />
-                            <span className="font-medium text-gray-900">{route.from}</span>
-                            <span className="text-gray-300">→</span>
-                            <span className="font-medium text-gray-900">{route.to}</span>
-                          </div>
-                        </td>
-                        <td className="px-4 py-3.5 text-gray-500 hidden sm:table-cell">{route.distance}</td>
-                        <td className="px-4 py-3.5 text-gray-500 hidden sm:table-cell">
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-3 h-3" />
-                            {route.duration}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3.5 text-right font-bold text-gray-900">${route.priceOneWay}</td>
-                        <td className="px-4 py-3.5 text-right font-bold text-gray-900">${route.priceRoundTrip}</td>
-                        <td className="px-4 py-3.5 text-right">
-                          <a
-                            href={getWhatsAppCarLink(car.name, `${route.from} to ${route.to}`)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 bg-gray-900 hover:bg-gray-800 text-white text-xs font-medium px-3 py-1.5 rounded-full transition-all"
-                          >
-                            <MessageCircle className="w-3 h-3" />
-                            Book
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              <h2 className="font-display text-2xl font-bold text-gray-900 mb-2">Available Routes</h2>
+              <p className="text-sm text-gray-500 mb-6">
+                We serve all popular routes across India. Tap any route to get a personalized quote on WhatsApp.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {car.routes.map((route, i) => (
+                  <a
+                    key={i}
+                    href={getWhatsAppCarLink(car.name, `${route.from} to ${route.to}`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between gap-3 bg-gray-50/80 hover:bg-gray-900 hover:text-white rounded-xl px-4 py-3.5 border border-gray-100/50 transition-all"
+                  >
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-1.5 font-medium text-gray-900 group-hover:text-white">
+                        <MapPin className="w-3.5 h-3.5 text-gray-400 group-hover:text-white/70 shrink-0" />
+                        <span className="truncate">{route.from}</span>
+                        <span className="text-gray-300 group-hover:text-white/40">→</span>
+                        <span className="truncate">{route.to}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-xs text-gray-500 group-hover:text-white/70 mt-1">
+                        <span>{route.distance}</span>
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {route.duration}
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-xs font-medium text-gray-900 group-hover:text-white shrink-0">
+                      Get Quote →
+                    </span>
+                  </a>
+                ))}
               </div>
-              <p className="text-xs text-gray-400 mt-3">
-                * Prices are approximate and may vary based on season and availability. Contact us for exact quotes.
+              <p className="text-xs text-gray-400 mt-4">
+                Don&apos;t see your route? <a href={getWhatsAppCarLink(car.name, "custom route")} target="_blank" rel="noopener noreferrer" className="text-gray-700 font-medium hover:text-gray-900">Message us on WhatsApp</a> — we cover all of India.
               </p>
             </div>
           </div>
@@ -145,22 +130,27 @@ export default async function CarRentalDetailPage({
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 bg-white rounded-2xl border border-gray-200 shadow-lg p-6 space-y-5">
-              <div>
-                <div className="text-sm text-gray-500">Starting from</div>
-                <div className="text-3xl font-bold text-gray-900 mt-1">
-                  ${Math.min(...car.routes.map((r) => r.priceOneWay))}
-                  <span className="text-sm font-normal text-gray-400 ml-1">/one-way</span>
+              <div className="text-center pb-2">
+                <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-3">
+                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                  Available 24/7
                 </div>
+                <h3 className="font-display text-xl font-bold text-gray-900">
+                  Get a Personalized Quote
+                </h3>
+                <p className="text-sm text-gray-500 mt-1">
+                  Share your route, dates, and group size — we&apos;ll send you the best price within minutes.
+                </p>
               </div>
 
               <a
                 href={getWhatsAppCarLink(car.name, "custom route")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-4 rounded-full transition-all hover:shadow-lg"
+                className="flex items-center justify-center gap-2 w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-4 rounded-full transition-all hover:shadow-lg hover:shadow-green-500/25"
               >
                 <MessageCircle className="w-5 h-5" />
-                Book via WhatsApp
+                Message on WhatsApp
               </a>
 
               <a
@@ -168,7 +158,7 @@ export default async function CarRentalDetailPage({
                 className="flex items-center justify-center gap-2 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 rounded-full transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                Call Us
+                Call {CONTACT.phoneDisplay}
               </a>
 
               <div className="border-t border-gray-100 pt-5 space-y-3">
@@ -178,7 +168,7 @@ export default async function CarRentalDetailPage({
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <CheckCircle className="w-4 h-4 text-teal-600" />
-                  No hidden charges
+                  Best price guarantee
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <Clock className="w-4 h-4 text-teal-600" />
@@ -188,14 +178,14 @@ export default async function CarRentalDetailPage({
 
               {/* Included */}
               <div className="border-t border-gray-100 pt-5">
-                <h4 className="font-semibold text-gray-900 text-sm mb-3">What&apos;s Included</h4>
+                <h4 className="font-semibold text-gray-900 text-sm mb-3">What&apos;s Typically Included</h4>
                 <ul className="space-y-2">
                   {[
                     "Professional driver",
                     "Fuel charges",
                     "Interstate permits",
                     "Parking & toll taxes",
-                    "GST included",
+                    "All applicable taxes",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-gray-600">
                       <CheckCircle className="w-3.5 h-3.5 text-green-600 shrink-0" />
