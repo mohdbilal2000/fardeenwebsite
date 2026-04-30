@@ -16,7 +16,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Fardeen Tours — Discover India, Your Way",
+  title: "Prestige India Holidays — Discover India, Your Way",
   description:
     "Premium India tour packages — Taj Mahal, Golden Triangle, Royal Rajasthan & more. 7+ years of crafting unforgettable experiences with personalized service.",
   keywords:

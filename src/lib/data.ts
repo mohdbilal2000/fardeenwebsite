@@ -1152,7 +1152,7 @@ export const testimonials: Testimonial[] = [
     name: "Anna Schmidt",
     country: "Germany",
     rating: 5,
-    text: "12 days in Rajasthan was a dream come true. From the desert camping to the palace hotels, every moment was special. Thank you, Fardeen Tours!",
+    text: "12 days in Rajasthan was a dream come true. From the desert camping to the palace hotels, every moment was special. Thank you, Prestige India Holidays!",
     tourName: "12 Day Royal Rajasthan Tour",
     avatar: "AS",
   },
@@ -1545,7 +1545,7 @@ India is culturally conservative in many areas. Dressing modestly — covering s
 
 ## Our Women Safety Program
 
-At Fardeen Tours, we take women's safety seriously:
+At Prestige India Holidays, we take women's safety seriously:
 - All our drivers and guides undergo background checks
 - We provide 24/7 emergency contact support
 - Our female staff members are available for consultation

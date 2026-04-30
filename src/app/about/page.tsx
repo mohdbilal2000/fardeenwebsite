@@ -33,7 +33,7 @@ export default function AboutPage() {
               </div>
               <div className="mt-6 space-y-4 text-gray-500 leading-relaxed text-[15px]">
                 <p>
-                  Fardeen Tours is one of India&apos;s premier online travel
+                  Prestige India Holidays is one of India&apos;s premier online travel
                   platforms, specializing in curated tour experiences across
                   North India. Based in the historic city of Agra, we offer
                   comprehensive tour packages, car rental services, hotel
@@ -108,7 +108,7 @@ export default function AboutPage() {
           <div className="text-center mb-12">
             <div className="section-line mx-auto flex flex-col items-center">
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-gray-900">
-                Why Choose Fardeen Tours
+                Why Choose Prestige India Holidays
               </h2>
             </div>
             <p className="text-gray-500 mt-2 max-w-md mx-auto text-sm">

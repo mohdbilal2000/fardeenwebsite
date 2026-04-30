@@ -1,4 +1,4 @@
-export const SITE_NAME = "Fardeen Tours";
+export const SITE_NAME = "Prestige India Holidays";
 export const SITE_TAGLINE = "Discover India, Your Way";
 export const SITE_DESCRIPTION =
   "Premium India tour packages — Taj Mahal, Golden Triangle, Royal Rajasthan & more. 7+ years of crafting unforgettable experiences.";
@@ -7,7 +7,7 @@ export const CONTACT = {
   phone: "+917078644407",
   phoneDisplay: "+91 70786 44407",
   whatsapp: "917078644407",
-  email: "info@theimperialtours.com",
+  email: "info@prestigeindiaholidays.com",
   address: "M.I.G 175 Shaheed Nagar, Agra - 282001, India",
   mapEmbed:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.4!2d78.0!3d27.18!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDEwJzQ4LjAiTiA3OMKwMDAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1",
