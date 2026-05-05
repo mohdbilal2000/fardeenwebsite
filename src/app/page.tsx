@@ -6,6 +6,7 @@ import ServiceCard from "@/components/ServiceCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import BlogCard from "@/components/BlogCard";
 import Stats from "@/components/Stats";
+import TrustSection from "@/components/TrustSection";
 import CTASection from "@/components/CTASection";
 import { tours, services, testimonials, blogPosts } from "@/lib/data";
 
@@ -50,6 +51,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <TrustSection />
 
       {/* Services */}
       <section className="py-16 sm:py-24 bg-gray-50/50">
