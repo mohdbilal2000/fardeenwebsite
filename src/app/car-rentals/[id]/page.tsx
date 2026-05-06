@@ -11,7 +11,7 @@ import {
   Clock,
   Shield,
 } from "lucide-react";
-import { carRentals } from "@/lib/data";
+import { carRentals, CAR_TYPES } from "@/lib/data";
 import { getWhatsAppCarLink, CONTACT } from "@/lib/constants";
 import CTASection from "@/components/CTASection";
 
@@ -55,7 +55,7 @@ export default async function CarRentalDetailPage({
               </span>
             )}
             <span className="glass text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
-              {car.type}
+              {CAR_TYPES.find((t) => t.key === car.type)?.label ?? car.type}
             </span>
           </div>
         </div>

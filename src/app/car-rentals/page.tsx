@@ -8,10 +8,14 @@ import { carRentals, CAR_TYPES, type CarType } from "@/lib/data";
 import { getWhatsAppCarLink } from "@/lib/constants";
 
 const CATEGORY_DESCRIPTIONS: Record<CarType, string> = {
-  luxury: "Premium cars and chauffeur service for VIP transfers and special occasions.",
-  tempo: "Plush lounge vans like the Vellfire and Innova Hycross — ideal for premium group travel.",
-  suv: "Spacious executive vehicles ideal for families and longer journeys with luggage.",
-  sedan: "Comfortable, fuel-efficient cars perfect for couples and small groups.",
+  "luxury-suv": "Flagship luxury SUVs for VIP transfers — Mercedes GLS, BMW 7 Series, Range Rover.",
+  "luxury-sedan": "Executive luxury saloons — Mercedes E/S-Class, BMW 5 Series, Audi A6.",
+  "luxury-van": "Plush chauffeur vans — Vellfire, Mercedes Viano, Sprinter, Carnival, Hiace, Coaster.",
+  "premium-suv": "Premium SUVs for hill stations and long routes — Fortuner, Innova Hycross.",
+  "premium-coach": "Modern premium minibuses — Force Urbania and Tempo Traveller variants.",
+  coach: "Volvo luxury touring coaches for large groups, weddings, and corporate tours.",
+  suv: "Spacious MPVs ideal for families and longer journeys with luggage.",
+  sedan: "Comfortable, fuel-efficient sedans perfect for couples and small groups.",
 };
 
 export default function CarRentalsPage() {
@@ -171,7 +175,7 @@ export default function CarRentalsPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
                     <div className="absolute top-3 left-3">
                       <span className="text-[11px] font-bold text-white bg-white/15 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10 uppercase tracking-wide">
-                        {car.type}
+                        {CAR_TYPES.find((t) => t.key === car.type)?.label ?? car.type}
                       </span>
                     </div>
                     <div className="absolute bottom-3 left-3 flex items-center gap-3 text-white text-sm">
