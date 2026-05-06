@@ -82,6 +82,11 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-10 sm:mb-14">
             <div className="section-line">
+              <span className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-widest uppercase text-amber-600 mb-3">
+                Trusted by International Travelers
+                <span className="text-gray-300">•</span>
+                <span className="text-gray-700">500+ Happy Guests</span>
+              </span>
               <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                 What Travelers Say
               </h2>

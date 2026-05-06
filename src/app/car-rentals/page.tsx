@@ -8,10 +8,10 @@ import { carRentals, CAR_TYPES, type CarType } from "@/lib/data";
 import { getWhatsAppCarLink } from "@/lib/constants";
 
 const CATEGORY_DESCRIPTIONS: Record<CarType, string> = {
-  sedan: "Comfortable, fuel-efficient cars perfect for couples and small groups.",
-  suv: "Spacious vehicles ideal for families and longer journeys with luggage.",
   luxury: "Premium cars and chauffeur service for VIP transfers and special occasions.",
-  tempo: "Mini-coaches for groups of 12–17 — weddings, corporate trips, family tours.",
+  tempo: "Plush lounge vans like the Vellfire and Innova Hycross — ideal for premium group travel.",
+  suv: "Spacious executive vehicles ideal for families and longer journeys with luggage.",
+  sedan: "Comfortable, fuel-efficient cars perfect for couples and small groups.",
 };
 
 export default function CarRentalsPage() {
@@ -224,10 +224,10 @@ export default function CarRentalsPage() {
                         href={getWhatsAppCarLink(car.name, `${car.routes[0].from} to ${car.routes[0].to}`)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-4 py-2.5 rounded-full transition-all hover:shadow-lg"
+                        className="flex items-center gap-1.5 bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-4 py-2.5 rounded-full transition-all hover:shadow-lg whitespace-nowrap"
                       >
                         <MessageCircle className="w-3.5 h-3.5" />
-                        Get Quote
+                        Check Availability
                       </a>
                     </div>
                   </div>

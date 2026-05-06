@@ -69,10 +69,10 @@ export default function TourCard({ tour }: { tour: Tour }) {
             href={getWhatsAppLink(tour.name)}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-4 py-2.5 rounded-full transition-all hover:shadow-lg"
+            className="flex items-center gap-1.5 bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-4 py-2.5 rounded-full transition-all hover:shadow-lg whitespace-nowrap"
           >
             <MessageCircle className="w-3.5 h-3.5" />
-            Book
+            Reserve Experience
           </a>
         </div>
       </div>

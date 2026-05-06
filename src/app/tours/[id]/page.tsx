@@ -199,7 +199,7 @@ export default async function TourDetailPage({
                 className="flex items-center justify-center gap-2 w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-4 rounded-full transition-all hover:shadow-lg"
               >
                 <MessageCircle className="w-5 h-5" />
-                Book via WhatsApp
+                Reserve Experience
               </a>
 
               <a

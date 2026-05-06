@@ -9,6 +9,11 @@ export default function TestimonialsPage() {
       <section className="bg-gray-950 pt-28 sm:pt-32 pb-14 sm:pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="section-line">
+            <span className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-widest uppercase text-amber-400 mb-3">
+              Trusted by International Travelers
+              <span className="text-white/30">•</span>
+              <span className="text-white/80">500+ Happy Guests</span>
+            </span>
             <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
               What Travelers Say
             </h1>

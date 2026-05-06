@@ -1,12 +1,14 @@
 import {
   Award,
   Shield,
-  Globe,
-  Users,
   Plane,
   Clock,
   Star,
   CheckCircle,
+  Car,
+  Sparkles,
+  Languages,
+  MapPin,
 } from "lucide-react";
 
 const ACHIEVEMENTS = [
@@ -38,34 +40,34 @@ const ACHIEVEMENTS = [
 
 const TRUST_POINTS = [
   {
-    icon: Plane,
-    title: "Doorstep Pickup",
-    desc: "Hotel & airport pickups across all major cities",
+    icon: Car,
+    title: "Private Chauffeur",
+    desc: "Vetted, professionally trained chauffeurs dedicated to your journey",
   },
   {
-    icon: Globe,
-    title: "500+ International Clients",
-    desc: "Travelers from 30+ countries trust us with their journey",
+    icon: Plane,
+    title: "Airport Pickup",
+    desc: "Seamless meet-and-greet pickups from every major airport in India",
+  },
+  {
+    icon: Languages,
+    title: "English Support",
+    desc: "Fluent English-speaking team and guides for international travelers",
+  },
+  {
+    icon: Sparkles,
+    title: "Sanitized Vehicles",
+    desc: "Every vehicle is deep-cleaned and sanitized before each journey",
+  },
+  {
+    icon: MapPin,
+    title: "Local Experts",
+    desc: "Born-and-raised insiders who know India beyond the guidebook",
   },
   {
     icon: Clock,
-    title: "24/7 Concierge",
-    desc: "Round-the-clock support before, during, and after your trip",
-  },
-  {
-    icon: Users,
-    title: "Licensed Guides",
-    desc: "Multilingual experts certified by the Ministry of Tourism",
-  },
-  {
-    icon: Shield,
-    title: "Best Price Guarantee",
-    desc: "Transparent pricing — we match or beat any comparable offer",
-  },
-  {
-    icon: CheckCircle,
-    title: "Women Safety Program",
-    desc: "Dedicated protocols for solo female travelers",
+    title: "24/7 Assistance",
+    desc: "Round-the-clock concierge support before, during, and after your trip",
   },
 ];
 
