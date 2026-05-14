@@ -29,6 +29,8 @@ export default async function CarRentalDetailPage({
 
   if (!car) notFound();
 
+  const gallery = car.images && car.images.length > 1 ? car.images : null;
+
   return (
     <>
       {/* Hero */}
@@ -84,6 +86,27 @@ export default async function CarRentalDetailPage({
                 ))}
               </div>
             </div>
+
+            {/* Gallery */}
+            {gallery && (
+              <div>
+                <h2 className="font-display text-2xl font-bold text-gray-900 mb-4">Gallery</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {gallery.map((src, i) => (
+                    <div
+                      key={i}
+                      className="relative aspect-[4/3] rounded-xl overflow-hidden border border-gray-100/80 bg-gray-50"
+                    >
+                      <img
+                        src={src}
+                        alt={`${car.name} — photo ${i + 1}`}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Routes Available */}
             <div>
