@@ -1,94 +1,65 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { Users, Snowflake, MessageCircle, Star, Shield, Plane, MapPin } from "lucide-react";
+import { useState, useRef } from "react";
+import { Users, Snowflake, MessageCircle, ChevronRight, ArrowUpRight, Star, Shield, Plane } from "lucide-react";
 import CTASection from "@/components/CTASection";
-import { carRentals, CAR_TYPES, type CarType, type CarRental } from "@/lib/data";
+import { carRentals, CAR_TYPES, type CarType } from "@/lib/data";
 import { getWhatsAppCarLink } from "@/lib/constants";
 
-const CATEGORY_DESCRIPTIONS: Record<CarType, string> = {
-  "luxury-suv": "Flagship luxury SUVs for VIP transfers — Mercedes GLS, BMW 7 Series, Range Rover.",
-  "luxury-sedan": "Executive luxury saloons — Mercedes E/S-Class, BMW 5 Series, Audi A6.",
-  "luxury-van": "Plush chauffeur vans — Vellfire, Mercedes Viano, Sprinter, Carnival, Hiace, Coaster.",
-  "premium-suv": "Premium SUVs for hill stations and long routes — Fortuner, Innova Hycross.",
-  "premium-coach": "Modern premium minibuses — Force Urbania and Tempo Traveller variants.",
-  coach: "Volvo luxury touring coaches for large groups, weddings, and corporate tours.",
-  suv: "Spacious MPVs ideal for families and longer journeys with luggage.",
-  sedan: "Comfortable, fuel-efficient sedans perfect for couples and small groups.",
+// Marketing context shown when a guest opens a segment — answers
+// "why should I prefer this category?" in 1–2 sentences.
+const CATEGORY_CONTEXT: Record<CarType, { tagline: string; why: string }> = {
+  sedan: {
+    tagline: "Comfort travel for couples & small groups",
+    why: "Our sedans are the smart everyday choice — fuel-efficient, easy to park around busy monuments, and comfortable on intercity highways. Ideal for couples, solo travelers, and day trips where you want comfort without the bulk.",
+  },
+  suv: {
+    tagline: "Family travel with room for everyone",
+    why: "Three-row MPVs with enough space for 6 guests plus luggage. The dependable choice for families and small groups on Golden Triangle tours and longer journeys.",
+  },
+  "premium-suv": {
+    tagline: "Premium comfort for long routes & hill stations",
+    why: "When you want extra room, road presence and a refined cabin for Rajasthan or hill-station drives. A noticeable step up from a standard SUV — without the cost of full luxury.",
+  },
+  "luxury-suv": {
+    tagline: "Flagship luxury for VIP transfers",
+    why: "Hand-crafted cabins, air-suspension rides and chauffeur-driven service in the world's most recognised luxury SUVs. The right choice when the journey is part of the experience.",
+  },
+  "luxury-sedan": {
+    tagline: "Executive saloons for business & special occasions",
+    why: "Whisper-quiet cabins, plush rear seating and the most refined ride on the road. Reserved for VIPs, executive transfers, weddings and anniversaries — anywhere a first impression matters.",
+  },
+  "luxury-van": {
+    tagline: "Lounge-style group travel",
+    why: "Captain seats, conference layouts and ambient lighting — a private jet cabin on wheels. Best for families, executive groups and anyone who wants luxury without splitting into multiple cars.",
+  },
+  "premium-coach": {
+    tagline: "Modern minibuses for groups of 9–17",
+    why: "Push-back recliner seats, individual AC vents and generous luggage room. The new standard for group tours, corporate outings and wedding shuttles.",
+  },
+  coach: {
+    tagline: "Volvo touring coaches for large groups",
+    why: "Air-suspension Volvo coaches with reclining seats and panoramic windows — built for weddings, corporate offsites and long-distance group tours of 30+ guests.",
+  },
 };
 
-function VehicleCard({ car }: { car: CarRental }) {
-  const variantCount = car.images?.length ?? 1;
-  return (
-    <div className="group relative h-72 sm:h-80 rounded-2xl overflow-hidden border border-white/10 bg-gray-900">
-      <img
-        src={car.image}
-        alt={car.name}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10" />
-
-      {/* Tag */}
-      {car.tag && (
-        <span className="absolute top-3 left-3 inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold text-amber-300 bg-amber-400/15 backdrop-blur-sm px-2.5 py-1 rounded-full border border-amber-300/30 uppercase tracking-wide">
-          <Star className="w-3 h-3 fill-amber-300" />
-          {car.tag}
-        </span>
-      )}
-
-      {/* Variant photo count */}
-      {variantCount > 1 && (
-        <span className="absolute top-3 right-3 text-[10px] font-semibold text-white bg-white/15 backdrop-blur-sm px-2 py-1 rounded-full border border-white/15">
-          {variantCount} photos
-        </span>
-      )}
-
-      {/* Content */}
-      <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
-        <h3 className="font-display text-lg sm:text-xl font-bold text-white leading-tight">
-          {car.name}
-        </h3>
-        <p className="mt-1.5 flex items-center gap-3 text-xs text-gray-300">
-          <span className="flex items-center gap-1">
-            <Users className="w-3.5 h-3.5" />
-            {car.capacity}
-          </span>
-          {car.ac && (
-            <span className="flex items-center gap-1">
-              <Snowflake className="w-3.5 h-3.5" />
-              AC
-            </span>
-          )}
-        </p>
-        <p className="mt-1 text-[11px] text-amber-200/70">
-          Ideal for Taj Mahal & Golden Triangle tours
-        </p>
-        <div className="flex items-center gap-2 mt-3">
-          <a
-            href={getWhatsAppCarLink(car.name, `${car.routes[0].from} to ${car.routes[0].to}`)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-white hover:bg-gray-100 text-gray-900 text-sm font-semibold px-4 py-2.5 rounded-full transition-all whitespace-nowrap"
-          >
-            <MessageCircle className="w-3.5 h-3.5" />
-            Reserve Experience
-          </a>
-          <Link
-            href={`/car-rentals/${car.id}`}
-            className="inline-flex items-center justify-center border border-white/25 hover:border-white/60 text-white text-sm font-medium px-4 py-2.5 rounded-full transition-all"
-          >
-            Details
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function CarRentalsPage() {
-  const recommended = carRentals.filter((c) => c.recommended);
-  const [openCategory, setOpenCategory] = useState<CarType | null>(CAR_TYPES[0].key);
+  const [activeType, setActiveType] = useState<CarType | null>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  const selectCategory = (type: CarType) => {
+    const next = activeType === type ? null : type;
+    setActiveType(next);
+    if (next) {
+      setTimeout(() => {
+        panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 80);
+    }
+  };
+
+  const activeCategory = CAR_TYPES.find((t) => t.key === activeType);
+  const activeCars = activeType ? carRentals.filter((c) => c.type === activeType) : [];
+  const activeContext = activeType ? CATEGORY_CONTEXT[activeType] : null;
 
   return (
     <>
@@ -96,16 +67,14 @@ export default function CarRentalsPage() {
       <section className="bg-gray-950 pt-28 sm:pt-32 pb-12 sm:pb-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="section-line">
-            <span className="text-[11px] font-semibold tracking-widest uppercase text-amber-400">
-              Private Chauffeur Service
-            </span>
-            <h1 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
-              Choose Your Travel Style
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+              Car Rentals & Cab Services
             </h1>
           </div>
           <p className="mt-3 text-base sm:text-lg text-gray-400 max-w-xl">
-            From comfortable sedans to flagship luxury SUVs and touring coaches —
-            every journey comes with a professional chauffeur and doorstep pickup.
+            From comfortable sedans to flagship luxury SUVs and touring coaches — every
+            journey comes with a professional chauffeur and doorstep pickup. Pick a
+            category to see all available vehicles.
           </p>
           <div className="flex flex-wrap gap-2.5 mt-6">
             {[
@@ -125,121 +94,182 @@ export default function CarRentalsPage() {
         </div>
       </section>
 
-      {/* Signature Rides — Recommended */}
-      <section className="bg-gray-950 pb-14 sm:pb-16">
+      {/* Category Tiles */}
+      <section className="py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
-            <div>
-              <h2 className="font-display text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-                <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
-                Signature Rides
-              </h2>
-              <p className="text-sm text-amber-200/70 mt-1">
-                Most booked by international guests — our recommended choices
-              </p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
-            {recommended.map((car) => (
-              <VehicleCard key={car.id} car={car} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* All Vehicles — Accordion by category */}
-      <section className="bg-gray-950 pb-14 sm:pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6 sm:mb-8">
-            <h2 className="font-display text-xl sm:text-2xl font-bold text-white">
-              All Vehicles
+          <div className="mb-8 sm:mb-10">
+            <h2 className="font-display text-xl sm:text-2xl font-bold text-gray-900">
+              Browse by Category
             </h2>
-            <p className="text-sm text-gray-400 mt-1">
-              Tap a category to explore every option in that segment
+            <p className="text-sm text-gray-500 mt-1">
+              Hover any segment to preview the vehicles inside — click to see why you
+              should pick it and message us directly on WhatsApp.
             </p>
           </div>
 
-          <div className="border-t border-white/10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             {CAR_TYPES.map((cat) => {
-              const carsInCategory = carRentals.filter((c) => c.type === cat.key);
-              if (carsInCategory.length === 0) return null;
-              const isOpen = openCategory === cat.key;
+              const cars = carRentals.filter((c) => c.type === cat.key);
+              const sample = cars[0];
+              const isActive = activeType === cat.key;
               return (
-                <div key={cat.key} className="border-b border-white/10">
-                  <button
-                    onClick={() => setOpenCategory(isOpen ? null : cat.key)}
-                    className="w-full flex items-center justify-between gap-4 py-5 text-left group"
-                  >
+                <button
+                  key={cat.key}
+                  onClick={() => selectCategory(cat.key)}
+                  className={`group relative rounded-2xl overflow-hidden card-hover h-48 sm:h-60 text-left transition-all ${
+                    isActive ? "ring-2 ring-gray-900 ring-offset-2" : ""
+                  }`}
+                >
+                  {sample && (
+                    <img
+                      src={sample.image}
+                      alt={cat.label}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-950/95 via-gray-950/55 to-gray-950/15 group-hover:from-gray-950 transition-all duration-500" />
+
+                  {/* Default state — name + count */}
+                  <div className="relative h-full flex flex-col justify-between p-4 sm:p-5">
+                    <div className="flex items-start justify-between">
+                      <span className="text-[10px] sm:text-[11px] font-bold text-white bg-white/15 backdrop-blur-sm px-2 py-1 rounded-full border border-white/10 uppercase tracking-wide">
+                        {cars.length} {cars.length === 1 ? "vehicle" : "options"}
+                      </span>
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white/15 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0 border border-white/10">
+                        <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                      </div>
+                    </div>
                     <div>
-                      <h3 className="font-display text-lg sm:text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                      <h3 className="font-display text-lg sm:text-xl font-bold text-white">
                         {cat.label}
                       </h3>
-                      <p className="text-xs sm:text-sm text-gray-400 mt-0.5 max-w-2xl">
-                        {carsInCategory.length}{" "}
-                        {carsInCategory.length === 1 ? "option" : "options"} ·{" "}
-                        {CATEGORY_DESCRIPTIONS[cat.key]}
+                      {/* Hover preview — vehicle names inside this segment */}
+                      <div className="mt-1.5 text-[11px] sm:text-xs text-amber-200/90 leading-snug max-h-0 opacity-0 group-hover:max-h-32 group-hover:opacity-100 transition-all duration-300 overflow-hidden">
+                        {cars.map((c) => c.name.replace("Mercedes-Benz ", "").replace("Toyota ", "")).join(" · ")}
+                      </div>
+                      <p className="mt-1 text-[11px] sm:text-xs text-gray-300/80 group-hover:opacity-0 transition-opacity duration-300">
+                        {CATEGORY_CONTEXT[cat.key].tagline}
                       </p>
                     </div>
-                    <span
-                      className={`shrink-0 w-9 h-9 rounded-full border flex items-center justify-center text-xl font-light transition-all ${
-                        isOpen
-                          ? "bg-amber-400 text-gray-950 border-amber-400"
-                          : "text-amber-400 border-white/20 group-hover:border-amber-400"
-                      }`}
-                    >
-                      {isOpen ? "−" : "+"}
-                    </span>
-                  </button>
-
-                  {isOpen && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 pb-8 animate-fade-in">
-                      {carsInCategory.map((car) => (
-                        <VehicleCard key={car.id} car={car} />
-                      ))}
-                    </div>
-                  )}
-                </div>
+                  </div>
+                </button>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Why Rent With Us */}
-      <section className="bg-gray-950 border-t border-white/10 py-14 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">
-            Why Rent With Us
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-10">
-            {[
-              {
-                icon: Shield,
-                title: "Verified Chauffeurs",
-                desc: "Background-checked, licensed drivers experienced with tourist routes and English-speaking guests.",
-              },
-              {
-                icon: MapPin,
-                title: "Doorstep Pickup",
-                desc: "Hotel and airport pickups across Delhi, Agra, Jaipur and every major city.",
-              },
-              {
-                icon: MessageCircle,
-                title: "24/7 Support",
-                desc: "Real-time assistance from booking to drop-off — we're always a message away.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="bg-white/5 rounded-2xl p-6 border border-white/10 text-left"
-              >
-                <div className="w-10 h-10 bg-amber-400/15 rounded-xl flex items-center justify-center mb-3 border border-amber-300/20">
-                  <item.icon className="w-5 h-5 text-amber-400" />
+      {/* Active segment panel — context + vehicle cards */}
+      {activeType && activeCategory && activeContext && (
+        <section ref={panelRef} className="pb-14 sm:pb-20 scroll-mt-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-gray-50/70 rounded-3xl p-6 sm:p-10 border border-gray-100">
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 sm:mb-8">
+                <div>
+                  <span className="inline-block text-[11px] font-semibold uppercase tracking-widest text-amber-600">
+                    Why choose {activeCategory.label}
+                  </span>
+                  <h2 className="mt-1 font-display text-2xl sm:text-3xl font-bold text-gray-900">
+                    {activeContext.tagline}
+                  </h2>
+                  <p className="mt-3 text-sm sm:text-base text-gray-600 leading-relaxed max-w-2xl">
+                    {activeContext.why}
+                  </p>
                 </div>
-                <h3 className="font-bold text-white">{item.title}</h3>
-                <p className="text-sm text-gray-400 mt-2 leading-relaxed">
-                  {item.desc}
-                </p>
+                <button
+                  onClick={() => setActiveType(null)}
+                  className="self-start sm:self-auto inline-flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  ← Browse other categories
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
+                {activeCars.map((car) => {
+                  const variantCount = car.images?.length ?? 1;
+                  return (
+                    <a
+                      key={car.id}
+                      href={getWhatsAppCarLink(car.name, `${car.routes[0].from} to ${car.routes[0].to}`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block bg-white rounded-2xl overflow-hidden card-hover border border-gray-100/80"
+                    >
+                      <div className="relative h-52 sm:h-56 overflow-hidden">
+                        <img
+                          src={car.image}
+                          alt={car.name}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+                        {car.tag && (
+                          <span className="absolute top-3 left-3 inline-flex items-center gap-1 text-[11px] font-bold text-amber-50 bg-amber-500/80 backdrop-blur-sm px-2.5 py-1 rounded-full uppercase tracking-wide">
+                            <Star className="w-3 h-3 fill-amber-50" />
+                            {car.tag}
+                          </span>
+                        )}
+                        {variantCount > 1 && (
+                          <span className="absolute top-3 right-3 text-[10px] font-semibold text-white bg-white/20 backdrop-blur-sm px-2 py-1 rounded-full border border-white/15">
+                            {variantCount} photos
+                          </span>
+                        )}
+                        <div className="absolute bottom-3 left-3 flex items-center gap-3 text-white text-sm">
+                          <span className="flex items-center gap-1">
+                            <Users className="w-3.5 h-3.5" />
+                            {car.capacity}
+                          </span>
+                          {car.ac && (
+                            <span className="flex items-center gap-1">
+                              <Snowflake className="w-3.5 h-3.5" />
+                              AC
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="p-5">
+                        <h3 className="font-semibold text-gray-900 text-[17px] leading-snug group-hover:text-teal-700 transition-colors">
+                          {car.name}
+                        </h3>
+                        <p className="text-[13px] text-gray-500 mt-2 line-clamp-2 leading-relaxed">
+                          {car.description}
+                        </p>
+                        <div className="flex items-center justify-between gap-2 mt-4 pt-4 border-t border-gray-50">
+                          <span className="inline-flex items-center gap-1 text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">
+                            Tap to message us
+                            <ChevronRight className="w-3.5 h-3.5" />
+                          </span>
+                          <span className="inline-flex items-center gap-1.5 bg-gray-900 group-hover:bg-gray-800 text-white text-sm font-medium px-4 py-2.5 rounded-full transition-all whitespace-nowrap">
+                            <MessageCircle className="w-3.5 h-3.5" />
+                            WhatsApp
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Why Rent With Us */}
+      <section className="py-14 sm:py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="section-line mx-auto flex flex-col items-center">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-gray-900">
+              Why Rent With Us
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
+            {[
+              { title: "Verified Chauffeurs", desc: "Background-checked, licensed drivers experienced with tourist routes and English-speaking guests." },
+              { title: "Doorstep Pickup", desc: "Hotel and airport pickups across Delhi, Agra, Jaipur and every major city." },
+              { title: "24/7 Support", desc: "Real-time assistance from booking to drop-off — we're always a message away." },
+            ].map((item) => (
+              <div key={item.title} className="bg-white rounded-2xl p-6 border border-gray-100/50">
+                <h3 className="font-bold text-gray-900">{item.title}</h3>
+                <p className="text-sm text-gray-500 mt-2 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
