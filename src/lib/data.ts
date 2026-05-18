@@ -1190,7 +1190,9 @@ export interface CarRental {
   images?: string[];
   // Short marketing badge shown on the card, e.g. "Most Booked".
   tag?: string;
-  // When true, the vehicle is featured in the "Signature Rides" recommended row.
+  // One-line value pitch shown under the name on the Recommended row.
+  tagline?: string;
+  // When true, the vehicle is featured in the top "Recommended" row.
   recommended?: boolean;
   description: string;
   features: string[];
@@ -1217,14 +1219,14 @@ export type CarType =
   | "sedan";
 
 export const CAR_TYPES: { key: CarType; label: string }[] = [
+  { key: "sedan", label: "Sedan" },
+  { key: "suv", label: "SUV" },
+  { key: "premium-suv", label: "Premium SUV" },
   { key: "luxury-suv", label: "Luxury SUVs" },
   { key: "luxury-sedan", label: "Luxury Sedans" },
-  { key: "luxury-van", label: "Luxury Vans" },
-  { key: "premium-suv", label: "Premium SUVs" },
   { key: "premium-coach", label: "Premium Coaches" },
+  { key: "luxury-van", label: "Luxury Vans" },
   { key: "coach", label: "Coaches" },
-  { key: "suv", label: "SUVs" },
-  { key: "sedan", label: "Sedans" },
 ];
 
 const STD_ROUTES = [
@@ -1281,6 +1283,7 @@ export const carRentals: CarRental[] = [
     capacity: "3 Passengers",
     ac: true,
     tag: "Executive Travel",
+    tagline: "Executive travel",
     recommended: true,
     image: "https://images.unsplash.com/photo-1652453822981-653a9a522a5b?w=800&q=80",
     images: [
@@ -1348,6 +1351,7 @@ export const carRentals: CarRental[] = [
     capacity: "6 Passengers",
     ac: true,
     tag: "Ultra Luxury",
+    tagline: "Premium comfort experience",
     recommended: true,
     image: "https://images.unsplash.com/photo-1675311149330-ff19be4aa6be?w=800&q=80",
     images: [
@@ -1491,6 +1495,7 @@ export const carRentals: CarRental[] = [
     capacity: "6 Passengers",
     ac: true,
     tag: "Most Booked",
+    tagline: "Best for families & tours",
     recommended: true,
     image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80",
     images: [
