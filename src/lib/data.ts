@@ -1229,6 +1229,63 @@ export const CAR_TYPES: { key: CarType; label: string }[] = [
   { key: "coach", label: "Coaches" },
 ];
 
+// Per-category positioning shown on the listing and detail pages.
+// `tier` is the short badge a client sees on each card ("which category it falls into").
+// `bestFor` are the criteria chips. `why` explains when to pick this segment.
+export const CATEGORY_INFO: Record<
+  CarType,
+  { tier: string; tagline: string; bestFor: string[]; why: string }
+> = {
+  sedan: {
+    tier: "Budget & Comfort",
+    tagline: "Comfort Travel",
+    bestFor: ["Budget", "Couples", "City & airport transfers"],
+    why: "Our sedans are the smart everyday choice — fuel-efficient, easy to navigate around busy monuments, and comfortable on intercity highways. Ideal for couples, solo travellers and short transfers where you want comfort without the bulk.",
+  },
+  suv: {
+    tier: "Family Friendly",
+    tagline: "Family Travel",
+    bestFor: ["Families", "Small groups", "Long tours"],
+    why: "Three-row MPVs with room for 6 guests plus luggage. The dependable choice for families and small groups on Golden Triangle tours and longer journeys.",
+  },
+  "premium-suv": {
+    tier: "Premium Comfort",
+    tagline: "Premium comfort for long routes & hill stations",
+    bestFor: ["Premium", "Families", "Hill stations"],
+    why: "Extra room, road presence and a refined cabin — perfect for Rajasthan and hill-station drives. A noticeable step up from a standard SUV, without the cost of full luxury.",
+  },
+  "luxury-suv": {
+    tier: "Luxury",
+    tagline: "Flagship luxury for VIP transfers",
+    bestFor: ["Luxury", "VIP transfers", "Special occasions"],
+    why: "Hand-crafted cabins, air-suspension rides and chauffeur-driven service in the world's most recognised luxury SUVs. The right choice when the journey is part of the experience.",
+  },
+  "luxury-sedan": {
+    tier: "Luxury Executive",
+    tagline: "Executive saloons for business & special occasions",
+    bestFor: ["Luxury", "Business", "Weddings"],
+    why: "Whisper-quiet cabins, plush rear seating and the most refined ride on the road. Reserved for VIPs, executive transfers, weddings and anniversaries — anywhere a first impression matters.",
+  },
+  "premium-coach": {
+    tier: "Group Travel",
+    tagline: "Modern minibuses for groups of 9–17",
+    bestFor: ["Groups", "Corporate", "Wedding shuttles"],
+    why: "Push-back recliner seats, individual AC vents and generous luggage room. The new standard for group tours, corporate outings and wedding shuttles.",
+  },
+  "luxury-van": {
+    tier: "Luxury Group",
+    tagline: "Lounge-style group travel",
+    bestFor: ["Luxury", "Groups", "Families"],
+    why: "Captain seats, conference layouts and ambient lighting — a private-jet cabin on wheels. Best for families, executive groups and anyone who wants luxury without splitting into multiple cars.",
+  },
+  coach: {
+    tier: "Large Groups",
+    tagline: "Volvo touring coaches for large groups",
+    bestFor: ["Large groups", "Weddings", "Corporate tours"],
+    why: "Air-suspension Volvo coaches with reclining seats and panoramic windows — built for weddings, corporate offsites and long-distance group tours of 30+ guests.",
+  },
+};
+
 const STD_ROUTES = [
   { from: "Delhi", to: "Agra", distance: "233 km", priceOneWay: 0, priceRoundTrip: 0, duration: "3.5 hours" },
   { from: "Delhi", to: "Jaipur", distance: "280 km", priceOneWay: 0, priceRoundTrip: 0, duration: "4.5 hours" },

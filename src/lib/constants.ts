@@ -29,11 +29,34 @@ export function getWhatsAppLink(tourName: string): string {
   return `${WHATSAPP_BASE_URL}?text=${message}`;
 }
 
-export function getWhatsAppCarLink(carName: string, route: string): string {
-  const message = encodeURIComponent(
-    `Hi Fardeen, I'm interested in renting a "${carName}" for the "${route}" route. Could you share availability and pricing?`
-  );
-  return `${WHATSAPP_BASE_URL}?text=${message}`;
+export interface CarBookingDetails {
+  vehicle: string;
+  category?: string;
+  days?: string;
+  pickupDate?: string;
+  location?: string;
+  name?: string;
+  phone?: string;
+  notes?: string;
+}
+
+// Builds a pre-filled WhatsApp booking request so Fardeen can see the vehicle,
+// trip length and contact details at a glance, then reply with a quote.
+export function getWhatsAppBookingLink(d: CarBookingDetails): string {
+  const lines = [
+    `New booking enquiry — ${SITE_NAME}`,
+    "",
+    `Vehicle: ${d.vehicle}${d.category ? ` (${d.category})` : ""}`,
+    d.days ? `Number of days: ${d.days}` : "",
+    d.pickupDate ? `Pickup date: ${d.pickupDate}` : "",
+    d.location ? `Pickup / route: ${d.location}` : "",
+    d.name ? `Name: ${d.name}` : "",
+    d.phone ? `Phone: ${d.phone}` : "",
+    d.notes ? `Notes: ${d.notes}` : "",
+    "",
+    "Please share your best quote.",
+  ].filter(Boolean);
+  return `${WHATSAPP_BASE_URL}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
 
 export function getWhatsAppGenericLink(): string {

@@ -15,6 +15,14 @@
   --font-display: var(--font-playfair);
 }
 
+/* Hostinger-purple brand palette — used by the premium car-rental section */
+@theme {
+  --color-brand: #673de6;
+  --color-brand-dark: #2f1c6a;
+  --color-brand-deep: #1b1033;
+  --color-brand-light: #efeafe;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

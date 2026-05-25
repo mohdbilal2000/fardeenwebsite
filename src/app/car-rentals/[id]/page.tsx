@@ -4,15 +4,15 @@ import {
   Users,
   Snowflake,
   ArrowLeft,
-  MessageCircle,
   CheckCircle,
   Phone,
   MapPin,
   Clock,
   Shield,
 } from "lucide-react";
-import { carRentals, CAR_TYPES } from "@/lib/data";
-import { getWhatsAppCarLink, CONTACT } from "@/lib/constants";
+import { carRentals, CAR_TYPES, CATEGORY_INFO } from "@/lib/data";
+import { CONTACT } from "@/lib/constants";
+import CarBookingForm from "@/components/CarBookingForm";
 import CTASection from "@/components/CTASection";
 
 export function generateStaticParams() {
@@ -30,13 +30,16 @@ export default async function CarRentalDetailPage({
   if (!car) notFound();
 
   const gallery = car.images && car.images.length > 1 ? car.images : null;
+  const categoryLabel =
+    CAR_TYPES.find((t) => t.key === car.type)?.label ?? car.type;
+  const info = CATEGORY_INFO[car.type];
 
   return (
     <>
       {/* Hero */}
       <section className="relative h-[40vh] sm:h-[50vh] min-h-[300px] sm:min-h-[400px] flex items-end overflow-hidden">
         <img src={car.image} alt={car.name} className="absolute inset-0 img-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-gray-950/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/90 via-brand-deep/30 to-transparent" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6 sm:pb-10 w-full">
           <Link href="/car-rentals" className="inline-flex items-center gap-1.5 text-white/70 hover:text-white text-sm mb-3 sm:mb-4 transition-colors">
             <ArrowLeft className="w-4 h-4" />
@@ -56,8 +59,8 @@ export default async function CarRentalDetailPage({
                 Air Conditioned
               </span>
             )}
-            <span className="glass text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
-              {CAR_TYPES.find((t) => t.key === car.type)?.label ?? car.type}
+            <span className="bg-brand text-white text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
+              {categoryLabel}
             </span>
           </div>
         </div>
@@ -74,13 +77,37 @@ export default async function CarRentalDetailPage({
               <p className="text-gray-600 leading-relaxed text-[15px]">{car.description}</p>
             </div>
 
+            {/* Best For */}
+            <div>
+              <h2 className="font-display text-2xl font-bold text-gray-900 mb-4">Best For</h2>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {info.bestFor.map((b) => (
+                  <span
+                    key={b}
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-dark bg-brand-light border border-brand/15 px-3.5 py-1.5 rounded-full"
+                  >
+                    <CheckCircle className="w-3.5 h-3.5 text-brand" />
+                    {b}
+                  </span>
+                ))}
+              </div>
+              <div className="bg-brand-light/60 border border-brand/15 rounded-xl p-4 sm:p-5">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  <span className="font-semibold text-brand-dark">
+                    Why a {categoryLabel.toLowerCase().replace(/s$/, "")}?
+                  </span>{" "}
+                  {info.why}
+                </p>
+              </div>
+            </div>
+
             {/* Features */}
             <div>
               <h2 className="font-display text-2xl font-bold text-gray-900 mb-4">Features</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {car.features.map((f) => (
                   <div key={f} className="flex items-center gap-3 bg-gray-50/80 rounded-xl px-4 py-3 border border-gray-100/50">
-                    <CheckCircle className="w-5 h-5 text-teal-600 shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-brand shrink-0" />
                     <span className="text-sm text-gray-700 font-medium">{f}</span>
                   </div>
                 ))}
@@ -108,29 +135,27 @@ export default async function CarRentalDetailPage({
               </div>
             )}
 
-            {/* Routes Available */}
+            {/* Popular Routes — informational */}
             <div>
-              <h2 className="font-display text-2xl font-bold text-gray-900 mb-2">Available Routes</h2>
+              <h2 className="font-display text-2xl font-bold text-gray-900 mb-2">Popular Routes</h2>
               <p className="text-sm text-gray-500 mb-6">
-                We serve all popular routes across India. Tap any route to get a personalized quote on WhatsApp.
+                We cover all of North India&apos;s tourist circuits plus Kerala and
+                Mysore. Share your route in the booking form and we&apos;ll send a quote.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {car.routes.map((route, i) => (
-                  <a
+                  <div
                     key={i}
-                    href={getWhatsAppCarLink(car.name, `${route.from} to ${route.to}`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-between gap-3 bg-gray-50/80 hover:bg-gray-900 hover:text-white rounded-xl px-4 py-3.5 border border-gray-100/50 transition-all"
+                    className="flex items-center justify-between gap-3 bg-gray-50/80 rounded-xl px-4 py-3.5 border border-gray-100/50"
                   >
                     <div className="min-w-0">
-                      <div className="flex items-center gap-1.5 font-medium text-gray-900 group-hover:text-white">
-                        <MapPin className="w-3.5 h-3.5 text-gray-400 group-hover:text-white/70 shrink-0" />
+                      <div className="flex items-center gap-1.5 font-medium text-gray-900">
+                        <MapPin className="w-3.5 h-3.5 text-brand shrink-0" />
                         <span className="truncate">{route.from}</span>
-                        <span className="text-gray-300 group-hover:text-white/40">→</span>
+                        <span className="text-gray-300">→</span>
                         <span className="truncate">{route.to}</span>
                       </div>
-                      <div className="flex items-center gap-3 text-xs text-gray-500 group-hover:text-white/70 mt-1">
+                      <div className="flex items-center gap-3 text-xs text-gray-500 mt-1">
                         <span>{route.distance}</span>
                         <span className="flex items-center gap-1">
                           <Clock className="w-3 h-3" />
@@ -138,43 +163,30 @@ export default async function CarRentalDetailPage({
                         </span>
                       </div>
                     </div>
-                    <span className="text-xs font-medium text-gray-900 group-hover:text-white shrink-0">
-                      Get Quote →
-                    </span>
-                  </a>
+                  </div>
                 ))}
               </div>
-              <p className="text-xs text-gray-400 mt-4">
-                Don&apos;t see your route? <a href={getWhatsAppCarLink(car.name, "custom route")} target="_blank" rel="noopener noreferrer" className="text-gray-700 font-medium hover:text-gray-900">Message us on WhatsApp</a> — we cover all of India.
-              </p>
             </div>
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 bg-white rounded-2xl border border-gray-200 shadow-lg p-6 space-y-5">
-              <div className="text-center pb-2">
+              <div className="pb-1">
                 <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-3">
                   <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
                   Available 24/7
                 </div>
                 <h3 className="font-display text-xl font-bold text-gray-900">
-                  Get a Personalized Quote
+                  Request a Quote
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">
-                  Share your route, dates, and group size — we&apos;ll send you the best price within minutes.
+                  Tell us your dates and trip length — we&apos;ll reply with the
+                  best price on WhatsApp.
                 </p>
               </div>
 
-              <a
-                href={getWhatsAppCarLink(car.name, "custom route")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-4 rounded-full transition-all hover:shadow-lg hover:shadow-green-500/25"
-              >
-                <MessageCircle className="w-5 h-5" />
-                Message on WhatsApp
-              </a>
+              <CarBookingForm vehicleName={car.name} categoryLabel={categoryLabel} />
 
               <a
                 href={`tel:${CONTACT.phone}`}
@@ -186,15 +198,15 @@ export default async function CarRentalDetailPage({
 
               <div className="border-t border-gray-100 pt-5 space-y-3">
                 <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Shield className="w-4 h-4 text-teal-600" />
-                  Verified & licensed drivers
+                  <Shield className="w-4 h-4 text-brand" />
+                  Verified &amp; licensed chauffeurs
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <CheckCircle className="w-4 h-4 text-teal-600" />
-                  Best price guarantee
+                  <CheckCircle className="w-4 h-4 text-brand" />
+                  Transparent, no-hidden-fee quotes
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Clock className="w-4 h-4 text-teal-600" />
+                  <Clock className="w-4 h-4 text-brand" />
                   24/7 roadside support
                 </div>
               </div>
@@ -204,7 +216,7 @@ export default async function CarRentalDetailPage({
                 <h4 className="font-semibold text-gray-900 text-sm mb-3">What&apos;s Typically Included</h4>
                 <ul className="space-y-2">
                   {[
-                    "Professional driver",
+                    "Private professional chauffeur",
                     "Fuel charges",
                     "Interstate permits",
                     "Parking & toll taxes",
