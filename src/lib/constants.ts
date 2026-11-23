@@ -4,9 +4,9 @@ export const SITE_DESCRIPTION =
   "Premium India tour packages — Taj Mahal, Golden Triangle, Royal Rajasthan & more. 7+ years of crafting unforgettable experiences.";
 
 export const CONTACT = {
-  phone: "+917078644407",
-  phoneDisplay: "+91 70786 44407",
-  whatsapp: "917078644407",
+  phone: "+918532944285",
+  phoneDisplay: "+91 85329 44285",
+  whatsapp: "918532944285",
   email: "info@prestigeindiaholidays.com",
   address: "M.I.G 175 Shaheed Nagar, Agra - 282001, India",
   mapEmbed:
